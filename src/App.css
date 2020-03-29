@@ -13,8 +13,8 @@ img {
     top: 10px;
     display: flex;
     flex-direction: row;
-     opacity: 0;
-    transition: 1s ease-in-out;
+    opacity: 0;
+    transition: .5s ease-in-out;
     width: 100%;
 }
 
@@ -27,11 +27,15 @@ img {
     color: white;
     background: #ce0053;
     border: transparent;
-    font-size: 22px;
+    font-size: 30px;
     font-weight: 900;
     position: absolute;
     right: 20px;
     height: 100%;
-    width: 100px;
+    width: 200px;
+}
+
+i {
+    margin: 0 2px;
 }
 

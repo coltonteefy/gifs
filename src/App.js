@@ -61,7 +61,7 @@ class App extends Component {
             <div className="App">
                 <div className="controls">
                     <ChangeCategory category={this.state.category} changeCategory={this.changeCategory}/>
-                    <button className="next-btn" onClick={this.next}>NEXT</button>
+                    <button className="next-btn" onClick={this.next}>NEXT GIF </button>
                 </div>
                 <img  alt="image" id="image"/>
             </div>
