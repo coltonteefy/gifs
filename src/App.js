@@ -14,7 +14,8 @@ function fetchData() {
             return res.json()
         })
         .then(data => {
-            document.getElementById("image").src = data.data.image_original_url
+            console.log(data)
+            document.getElementById("image").src = data.data.image_url
         })
         .catch(err => {
             console.log(err)
