@@ -21,7 +21,10 @@ function fetchData(search) {
         })
 }
 
+
+
 class App extends Component {
+
 
     state = {
         category: 'trippy'
@@ -36,7 +39,8 @@ class App extends Component {
     }
 
     componentDidMount() {
-        fetchData(search)
+        fetchData(search);
+        this.eventListener();
     }
 
     changeCategory = (input) => {
@@ -56,6 +60,14 @@ class App extends Component {
         fetchData(search);
     }
 
+    eventListener() {
+        window.addEventListener('keydown', (e) => {
+            if(e.code === "ArrowRight" || e.keyCode === 39) {
+                this.next();
+            }
+        });
+    }
+
     render() {
         return (
             <div className="App">
@@ -63,7 +75,7 @@ class App extends Component {
                     <ChangeCategory category={this.state.category} changeCategory={this.changeCategory}/>
                     <button className="next-btn" onClick={this.next}>NEXT GIF </button>
                 </div>
-                <img  alt="image" id="image"/>
+                <img  alt="loading" id="image"/>
             </div>
         );
     }

@@ -23,7 +23,7 @@ class ChangeCategory extends Component {
     render() {
         return (
             <div className="change-category-form">
-                <form className="change-form" onSubmit={this.onSubmit} autocomplete="off">
+                <form className="change-form" onSubmit={this.onSubmit} autoComplete="off">
                     <input className="change-input" id="change-input" type="text" placeholder="SEARCH" onChange={this.onChange}/>
                     <input className="change-btn" type="submit" value="GO!" />
                 </form>
