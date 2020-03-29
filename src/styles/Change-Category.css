@@ -1,9 +1,5 @@
 .change-category-form {
-    position: absolute;
-    left: 20px;
-    top: 10px;
-    opacity: 0;
-    transition: 1s ease-in-out;
+
 }
 
 .change-category-form:hover {
@@ -13,10 +9,10 @@
 .change-form {
     display: flex;
     flex-direction: row;
+    margin: 0 20px;
 }
 
 .change-input {
-    height: 20px;
     width: 300px;
     border-radius: 4px;
     outline: transparent;
@@ -24,16 +20,16 @@
     font-size: 30px;
     padding: 10px;
     border: 1px solid #ce0053;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .change-btn {
-    height: 40px;
     border-radius: 4px;
     color: white;
     background: #ce0053;
-    margin: 4px;
+    margin: 0 5px;
     border: transparent;
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 22px;
+    font-weight: 900;
+    width: 100px;
 }

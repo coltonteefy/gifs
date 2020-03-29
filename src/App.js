@@ -8,15 +8,15 @@ import ChangeCategory from "./components/Change-Category";
 
 let API_KEY = 'Zbt4XDP6iVfN4sF30tTLrLXS5tSkE5MN';
 let category = 'trippy';
-let random = `http://api.giphy.com/v1/gifs/random?tag=${category}&api_key=${API_KEY}&limit=20`;
+let search = `http://api.giphy.com/v1/gifs/random?tag=${category}&api_key=${API_KEY}&limit=20`;
 
-function fetchData(random) {
-    fetch(random)
+function fetchData(search) {
+    fetch(search)
         .then(res => {
             return res.json()
         })
         .then(data => {
-            document.getElementById("image").src = data.data.image_url
+            document.getElementById("image").src = data.data.image_url;
         })
         .catch(err => {
             console.log(err)
@@ -29,16 +29,16 @@ class App extends Component {
         category: 'trippy'
     };
 
-    random = `http://api.giphy.com/v1/gifs/random?tag=${this.state.category}&api_key=${API_KEY}&limit=20`;
+    search = `http://api.giphy.com/v1/gifs/random?tag=${this.state.category}&api_key=${API_KEY}&limit=20`;
 
     myVar = setInterval(this.myTimer, 15000);
 
     async myTimer() {
-        fetchData(random)
+        fetchData(search)
     }
 
     componentDidMount() {
-        fetchData(random)
+        fetchData(search)
     }
 
     changeCategory = (input) => {
@@ -49,15 +49,23 @@ class App extends Component {
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log("HERE", this.state.category);
-        random = `http://api.giphy.com/v1/gifs/random?tag=${this.state.category}&api_key=${API_KEY}&limit=20`;
-        fetchData(random);
+        search = `http://api.giphy.com/v1/gifs/random?tag=${this.state.category}&api_key=${API_KEY}&limit=20`;
+        document.getElementById("image").src = "";
+        fetchData(search);
+    }
+
+    next() {
+        document.getElementById("image").src = "";
+        fetchData(search);
     }
 
     render() {
         return (
             <div className="App">
-                <ChangeCategory category={this.state.category} changeCategory={this.changeCategory}/>
+                <div className="controls">
+                    <ChangeCategory category={this.state.category} changeCategory={this.changeCategory}/>
+                    <button className="next-btn" onClick={this.next}>NEXT</button>
+                </div>
                 <img  alt="image" id="image"/>
             </div>
         );

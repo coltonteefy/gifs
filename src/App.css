@@ -8,50 +8,30 @@ img {
     width: 100vw;
 }
 
-.gif-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-}
-
-.gif-ul li {
-    border: 1px solid red;
-}
-
-a {
-    width: 100vw;
-    height: 100vh;
-}
-
-.giphy-carousel {
-    height: 100vh;
-    width: 100vw;
-
-    overflow: scroll;
-}
-
-.css-1s2780s {
-    -webkit-overflow-scrolling: touch;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: inherit !important;
-    position: relative;
-
-}
-
-.css-1gtuxca {
-
-    height: 100vh !important;
-    width: 100vw !important;
-}
-
-.giphy-gif-img {
+.controls {
     position: absolute;
-    top: 0;
-    left: -1px !important;
-    right: 0;
-    bottom: 0;
-    background: transparent !important;
+    top: 10px;
+    display: flex;
+    flex-direction: row;
+     opacity: 0;
+    transition: 1s ease-in-out;
+    width: 100%;
 }
+
+.controls:hover {
+    opacity: 1;
+}
+
+.next-btn {
+    border-radius: 4px;
+    color: white;
+    background: #ce0053;
+    border: transparent;
+    font-size: 22px;
+    font-weight: 900;
+    position: absolute;
+    right: 20px;
+    height: 100%;
+    width: 100px;
+}
+
