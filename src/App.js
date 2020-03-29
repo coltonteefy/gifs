@@ -1,67 +1,66 @@
 import React, {Component} from 'react';
 import './App.css';
 
-import { Carousel } from '@giphy/react-components'
-import { GiphyFetch } from '@giphy/js-fetch-api'
+// import { Carousel } from '@giphy/react-components'
+// import { GiphyFetch } from '@giphy/js-fetch-api'
 
-// random = 'http://api.giphy.com/v1/gifs/random?tag=psychedelic&api_key=' + this.API_KEY + '&limit=20';
-// search = 'https://api.giphy.com/v1/gifs/search?api_key=' + this.API_KEY + '&q=psychedelic&limit=50&offset=0&rating=PG-13&lang=en'
+// let random = `http://api.giphy.com/v1/gifs/random?tag=psychedelic&api_key=${API_KEY}&limit=20`;
+// let search = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=psychedelic&limit=50&offset=0&rating=PG-13&lang=en`;
 // PUBLIC_KEY = 'dc6zaTOxFJmzC';
 
-let gifStore = [];
-let API_KEY = 'use_your_api_key';
-let random = `http://api.giphy.com/v1/gifs/random?tag=psychedelic&api_key=${API_KEY}&limit=20`;
-let search = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=psychedelic&limit=50&offset=0&rating=PG-13&lang=en`;
+let API_KEY = 'Zbt4XDP6iVfN4sF30tTLrLXS5tSkE5MN';
+let random = `http://api.giphy.com/v1/gifs/random?tag=trippy&api_key=${API_KEY}&limit=20`;
 let gifStorePosition = 0;
 
-const gf = new GiphyFetch(API_KEY)
-const fetchGifs = (offset) => gf.search("trippy",{ offset, limit: 1000 });
+// const gf = new GiphyFetch(API_KEY)
+// const fetchGifs = () => gf.search("trippy",{  limit: 1000 });
 
+
+function fetchData() {
+    fetch(random)
+        .then(res => {
+            return res.json()
+        })
+        .then(data => {
+            console.log(data)
+            document.getElementById("image").src = data.data.image_original_url
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
 
 class App extends Component {
 
-    myVar = setInterval(this.myTimer, 13000);
+    myVar = setInterval(this.myTimer, 15000);
 
-    state = {
-        data: gifStore
-    };
+    async myTimer() {
+        // if(document.querySelector(".giphy-carousel").childNodes.item(gifStorePosition)) {
+        //     let child = document.querySelector(".giphy-carousel").childNodes.item(gifStorePosition);
+        //     child.style.zIndex = 1;
+        //     child.style.position = "absolute";
+        // }
+        // gifStorePosition++;
+        //
+        // if(document.querySelector(".giphy-carousel").childNodes.item(gifStorePosition)) {
+        //     let child = document.querySelector(".giphy-carousel").childNodes.item(gifStorePosition);
+        //     child.style.zIndex = 0;
+        //     child.style.position = "relative";
+        // }
 
-    async fetchData() {
-        await fetch(search)
-            .then(async res => {
-                return res.json();
-            })
-            .then((data) => {
-                data.data.map((info, index) => {
-                    this.setState({
-                        data: [...this.state.data, info.url]
-                    })
-                });
-            })
-            .catch(err => {
-                console.log(err);
-            })
+        fetchData()
+
     }
 
     componentDidMount() {
-        this.fetchData();
+        fetchData()
     }
-
-
-    async myTimer() {
-        if(document.querySelector(".giphy-carousel").childNodes.item(gifStorePosition)) {
-            let child = document.querySelector(".giphy-carousel").childNodes.item(gifStorePosition);
-            child.style.zIndex = 1;
-            child.style.position = "absolute";
-        }
-        gifStorePosition++;
-    }
-
 
     render() {
         return (
             <div className="App">
-                <Carousel gifHeight={500} gutter={1} fetchGifs={fetchGifs} />
+                {/*<Carousel gifHeight={1000} gutter={1} fetchGifs={fetchGifs} />*/}
+                <img  alt="image" id="image"/>
             </div>
         );
     }
