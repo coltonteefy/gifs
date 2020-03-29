@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import './App.css';
 import ChangeCategory from "./components/Change-Category";
 
-// let random = `http://api.giphy.com/v1/gifs/random?tag=psychedelic&api_key=${API_KEY}&limit=20`;
-// let search = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=psychedelic&limit=50&offset=0&rating=PG-13&lang=en`;
 // PUBLIC_KEY = 'dc6zaTOxFJmzC';
 
 let API_KEY = 'Zbt4XDP6iVfN4sF30tTLrLXS5tSkE5MN';
@@ -42,7 +40,6 @@ class App extends Component {
     }
 
     changeCategory = (input) => {
-        console.log("inside change category", this.state.category)
          this.setState({
             category: input
         });
