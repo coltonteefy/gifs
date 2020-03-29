@@ -1,0 +1,82 @@
+.previous-container {
+    border-radius: 4px;
+    display: grid;
+    position: relative;
+    left: 20px;
+}
+
+.view-previous-btn {
+    border-radius: 4px;
+    color: white;
+    background: #ce0053;
+    border: transparent;
+    font-size: 30px;
+    font-weight: 900;
+    height: 60px;
+    width: 265px;
+}
+
+.view-previous-btn:hover ~ .previous-list-container {
+    height: 500px;
+    opacity: 1;
+}
+
+.previous-list-container {
+    height: 0;
+    opacity: 0;
+    /*height: 500px;*/
+    /*opacity: 1;*/
+    border: 1px solid;
+    background: white;
+    color: #ce0053;
+    border-radius: 4px;
+    width: 500px;
+    margin-top: 2px;
+    transition: .2s ease-in;
+    overflow: scroll;
+    padding: 8px;
+}
+
+.previous-list-container:hover {
+    height: 500px;
+    opacity: 1;
+}
+
+.previous-ul {
+    list-style: none;
+    color: #ce0053;
+    padding: 0;
+    margin: 0;
+}
+
+.previous-ul li {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    margin: 10px 2px;
+    align-items: center;
+    border: 1px solid #EF7674;
+    border-radius: 4px;
+}
+
+.previous-ul li img {
+    width: 80px;
+    height: 80px;
+}
+
+.previous-ul li a {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #ce0053;
+    text-decoration: transparent;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.heart-icon {
+    color: #d0c7c7;
+}
+
+.heart-icon:hover {
+    color: #ce0053;
+}
