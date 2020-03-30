@@ -25,7 +25,6 @@ class App extends Component {
             .then(data => {
                 document.getElementById("image").src = data.data.image_url;
 
-                console.log(data.data.image_url, this.state.previousGifs, this.state.previousGifs.indexOf(data.data.image_url))
                 this.setState({
                     previousGifs: [...this.state.previousGifs, data.data.image_url],
                     loading: false
