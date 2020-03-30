@@ -24,11 +24,13 @@ class PreviousGifs extends Component {
                         {
                             this.state.prev.map((link, index) => {
                                 return (
+                                    index < 15 &&
                                     <li key={index + link}>
                                         <img src={link} alt="loading"/>
                                         <a href={link}>{link}</a>
                                         <i className="fas fa-heart heart-icon"/>
                                     </li>
+
                                 )
                             })
                         }
@@ -40,14 +42,3 @@ class PreviousGifs extends Component {
 }
 
 export default PreviousGifs;
-
-/*
- {
-                            this.state.prev.map(link => {
-                                return (
-                                    <li>{{link}}</li>
-                                )
-                            })
-                        }
-
-* */

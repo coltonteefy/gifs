@@ -1,5 +1,7 @@
 .change-category-form {
     height: 60px;
+    display: grid;
+    justify-self: center;
 }
 
 .change-category-form:hover {
@@ -7,10 +9,8 @@
 }
 
 .change-form {
-    display: flex;
-    flex-direction: row;
-    margin: 0 20px;
-    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .change-input {
@@ -20,29 +20,30 @@
     align-self: center;
     font-size: 30px;
     padding: 10px;
-    border: 1px solid #ce0053;
+    border: 3px solid #ce0053;
     background: rgba(255, 255, 255, 1);
     z-index: 3;
     text-transform: uppercase;
+    grid-column: 2;
 }
 
 .change-input:not(:placeholder-shown) ~ .change-btn {
     opacity: 1;
-    transform: translateX(0);
-    width: 100px;
+    transform: translateX(20px);
 }
 
 .change-btn {
-    border-radius: 4px;
+    outline: none;
+    border-radius: 0 4px 4px 0;
     color: white;
     background: #ce0053;
-    margin: 0 5px;
+    margin: 0;
     border: transparent;
     font-size: 30px;
     font-weight: 900;
-    opacity: 0;
-    transition: .3s ease;
-    transform: translateX(-45px);
-    width: 0;
+    /*opacity: 0;*/
+    transition: .2s ease;
+    transform: translateX(-85px);
+    width: 100px;
     z-index: 2;
 }
