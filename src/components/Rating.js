@@ -12,7 +12,9 @@ class Rating extends Component {
     render() {
         return (
             <div className="rating-form">
-                <div className="rating-btn"><i className="far fa-edit"> </i></div>
+                <div className="rating-btn">
+                    <i className="far fa-edit"/>
+                </div>
                 <div className="rating-list" onClick={this.updateRating}>
                     {
                         this.rating.map(curr => {
@@ -29,13 +31,3 @@ class Rating extends Component {
 }
 
 export default Rating;
-
-/*
-{
-                            this.rating.map(curr => {
-                                if(curr !== this.props.rating) {
-                                   return <button className="rating-list" key={curr}>{curr}</button>
-                                }
-                            })
-                        }
-* */

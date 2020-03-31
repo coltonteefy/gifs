@@ -3,6 +3,7 @@ import './App.css';
 import ChangeCategory from "./components/Change-Category";
 import PreviousGifs from "./components/Previous-Gifs";
 import Rating from "./components/Rating";
+import ToggleAPILocal from "./components/Toggle-API-Local";
 
 const API_KEY = 'Zbt4XDP6iVfN4sF30tTLrLXS5tSkE5MN';
 let SEARCH_URL = `http://api.giphy.com/v1/gifs/random?tag=trippy&api_key=${API_KEY}`;
@@ -98,6 +99,7 @@ class App extends Component {
                     <div className="left-side-selections">
                         <PreviousGifs previous={this.state.previousGifs[this.state.previousGifs.length - 1]}/>
                         <Rating updateRating={this.updateRating} rating={this.state.rating}/>
+                        <ToggleAPILocal/>
                     </div>
 
                     <ChangeCategory category={this.state.category} changeCategory={this.changeCategory}/>

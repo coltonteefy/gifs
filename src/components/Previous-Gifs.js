@@ -22,7 +22,7 @@ class PreviousGifs extends Component {
     render() {
         return (
             <div className="previous-container">
-                <button className="view-previous-btn"><i className="fas fa-th-list"> </i> </button>
+                <button className="view-previous-btn"><i className="fas fa-archive"></i> </button>
                 <div className="previous-list-container">
                     <img src="https://media.giphy.com/media/W2PcRKgR80TlC6El8D/giphy.gif" alt="" style={{height: "200px"}}/>
                     <ul className="previous-ul">

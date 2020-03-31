@@ -21,7 +21,8 @@
     opacity: 1;
     transform: translateX(62px);
     pointer-events: all;
-    height: 98vh;
+    height: auto;
+    max-height: 98vh;
 }
 
 .previous-list-container {
@@ -43,7 +44,8 @@
     transform: translateX(62px);
     opacity: 1;
     pointer-events: all;
-    height: 98vh;
+    height: auto;
+    max-height: 98vh;
 }
 
 .previous-ul {
@@ -52,6 +54,8 @@
     padding: 0;
     margin: 0;
     width: 400px;
+    position: relative;
+    top: -65px;
 }
 
 .previous-ul li {
