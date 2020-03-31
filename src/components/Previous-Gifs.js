@@ -22,9 +22,11 @@ class PreviousGifs extends Component {
     render() {
         return (
             <div className="previous-container">
-                <button className="view-previous-btn"><i className="fas fa-archive"></i> </button>
+                <button className="view-previous-btn">
+                    <i className="fas fa-archive"></i> archived
+                </button>
                 <div className="previous-list-container">
-                    <img src="https://media.giphy.com/media/W2PcRKgR80TlC6El8D/giphy.gif" alt="" style={{height: "200px"}}/>
+                    <img src="https://media.giphy.com/media/W2PcRKgR80TlC6El8D/giphy.gif" alt="throw back" id="throwback"/>
                     <ul className="previous-ul">
                         {
                             this.state.prev.map((link, index) => {

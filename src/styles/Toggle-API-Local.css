@@ -7,15 +7,21 @@
     color: white;
     background: #00bace;
     border: transparent;
-    font-size: 30px;
+    font-size: 8px;
     font-weight: 900;
-    transition: .2s ease;
-    width: 60px;
     height: 60px;
-    display: grid;
+    width: 60px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 5;
+    text-transform: uppercase;
+}
+
+.fa-toggle-on {
+    font-size: 30px;
+    margin-bottom: 2px;
 }
 
 .toggle-btn:hover ~ .toggle-list {
@@ -53,10 +59,11 @@
     width: auto;
     background: transparent;
     border: none;
-    margin: 4px;
+    margin: 10px;
     font-size: 15px;
     font-weight: 900;
     outline: none;
+    text-transform: uppercase;
 }
 
 .toggle-selections:hover {

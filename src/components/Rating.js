@@ -14,6 +14,7 @@ class Rating extends Component {
             <div className="rating-form">
                 <div className="rating-btn">
                     <i className="far fa-edit"/>
+                    src rating
                 </div>
                 <div className="rating-list" onClick={this.updateRating}>
                     {

@@ -15,7 +15,8 @@ class App extends Component {
         category: 'trippy',
         rating: 'PG-13',
         previousGifs: [],
-        loading: false
+        loading: false,
+        source: "api"
     };
 
     fetchData = (search) => {
@@ -24,10 +25,11 @@ class App extends Component {
                 return res.json()
             })
             .then(data => {
-                document.getElementById("image").src = data.data.image_url;
+                console.log(data.data)
+                document.getElementById("image").src = data.data.image_original_url;
 
                 this.setState({
-                    previousGifs: [...this.state.previousGifs, data.data.image_url],
+                    previousGifs: [...this.state.previousGifs, data.data.image_original_url],
                     loading: false
                 })
             })
@@ -75,6 +77,14 @@ class App extends Component {
         })
     };
 
+    toggleSource = (input) => {
+        this.setState({
+            source: input
+        }, () => {
+            console.log("TODO: add local source")
+        })
+    };
+
     eventListener = () => {
         window.addEventListener('keydown', (e) => {
             if (e.code === "ArrowRight" || e.keyCode === 39) {
@@ -99,12 +109,15 @@ class App extends Component {
                     <div className="left-side-selections">
                         <PreviousGifs previous={this.state.previousGifs[this.state.previousGifs.length - 1]}/>
                         <Rating updateRating={this.updateRating} rating={this.state.rating}/>
-                        <ToggleAPILocal/>
+                        <ToggleAPILocal source={this.state.source} toggleSource={this.toggleSource}/>
                     </div>
 
                     <ChangeCategory category={this.state.category} changeCategory={this.changeCategory}/>
 
-                    <button className="next-btn" onClick={this.next}>NEXT GIF</button>
+                    <div className="next-btn-section">
+                        <button className="next-btn rainbow" onClick={this.next}>NEXT GIF</button>
+                        <img src="https://media.giphy.com/media/Lo5vjpAi4G7JZNXI8D/giphy.gif" alt="" id="next-gif"/>
+                    </div>
                 </div>
                 <img alt="loading" id="image"/>
             </div>
