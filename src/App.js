@@ -37,7 +37,6 @@ class App extends Component {
 
     startTimer() {
         timer = setInterval(() => {
-            console.log("START TIMER");
             this.fetchData(SEARCH_URL);
         }, 5000);
     }
@@ -72,7 +71,6 @@ class App extends Component {
             rating: input
         }, () => {
             SEARCH_URL = `http://api.giphy.com/v1/gifs/random?tag=${this.state.category}&rating=${this.state.rating}&api_key=${API_KEY}`;
-            console.log(SEARCH_URL)
         })
     };
 
@@ -97,9 +95,11 @@ class App extends Component {
                     </div>
                 }
                 <div className="controls">
-                    <PreviousGifs previous={this.state.previousGifs[this.state.previousGifs.length - 1]}/>
+                    <div className="left-side-selections">
+                        <PreviousGifs previous={this.state.previousGifs[this.state.previousGifs.length - 1]}/>
+                        <Rating updateRating={this.updateRating} rating={this.state.rating}/>
+                    </div>
 
-                    <Rating updateRating={this.updateRating} rating={this.state.rating}/>
                     <ChangeCategory category={this.state.category} changeCategory={this.changeCategory}/>
 
                     <button className="next-btn" onClick={this.next}>NEXT GIF</button>

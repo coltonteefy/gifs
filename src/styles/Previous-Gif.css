@@ -11,28 +11,25 @@
     font-size: 30px;
     font-weight: 900;
     height: 60px;
-    width: auto;
+    width: 60px;
     display: grid;
     justify-self: start;
+    z-index: 5;
 }
 
 .view-previous-btn:hover ~ .previous-list-container {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(62px);
     pointer-events: all;
+    height: 98vh;
 }
 
 .previous-list-container {
-    /*height: 0;*/
-    opacity: 0;
-    height: 98vh;
+    height: 0;
     transform: translateX(-500px);
-    /*opacity: 1;*/
-    border: 1px solid;
     background: white;
-    border: 1px solid white;
     border-radius: 4px;
-    /*margin-top: 2px;*/
+    margin-top: 10px;
     transition: .2s ease-in;
     overflow: scroll;
     padding: 8px;
@@ -43,10 +40,10 @@
 }
 
 .previous-list-container:hover {
-    /*height: 96vh;*/
-    transform: translateX(0);
+    transform: translateX(62px);
     opacity: 1;
     pointer-events: all;
+    height: 98vh;
 }
 
 .previous-ul {

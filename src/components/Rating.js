@@ -12,17 +12,16 @@ class Rating extends Component {
     render() {
         return (
             <div className="rating-form">
-                <div className="dropdown">
-                    <div className="rating-display">{this.props.rating}</div>
-                    <div className="dropdown-content" onClick={this.updateRating}>
-                        {
-                            this.rating.map(curr => {
-                                if(curr !== this.props.rating) {
-                                   return <button className="rating-list" key={curr}>{curr}</button>
-                                }
-                            })
-                        }
-                    </div>
+                <div className="rating-btn"><i className="far fa-edit"> </i></div>
+                <div className="rating-list" onClick={this.updateRating}>
+                    {
+                        this.rating.map(curr => {
+                            if(curr === this.props.rating) {
+                                return <button className="rating-selections selected" key={curr} >{curr}</button>
+                            }
+                            return <button className="rating-selections" key={curr}>{curr}</button>
+                        })
+                    }
                 </div>
             </div>
         );
@@ -30,3 +29,13 @@ class Rating extends Component {
 }
 
 export default Rating;
+
+/*
+{
+                            this.rating.map(curr => {
+                                if(curr !== this.props.rating) {
+                                   return <button className="rating-list" key={curr}>{curr}</button>
+                                }
+                            })
+                        }
+* */

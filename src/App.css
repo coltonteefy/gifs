@@ -37,7 +37,7 @@
     position: absolute;
     top: 10px;
     display: grid;
-    grid-template-columns: 1fr 1fr 4fr 1fr;
+    grid-template-columns: 1fr 4fr 1fr;
     opacity: 0;
     transition: .5s ease-in-out;
     width: 100%;
@@ -47,6 +47,11 @@
 
 .controls:hover {
     opacity: 1;
+}
+
+.left-side-selections {
+    display: grid;
+    grid-gap: 10px;
 }
 
 .next-btn {

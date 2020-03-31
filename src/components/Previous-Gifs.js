@@ -15,8 +15,6 @@ class PreviousGifs extends Component {
         }
     }
 
-
-
     saveGif(e) {
         console.log(e.currentTarget)
     }

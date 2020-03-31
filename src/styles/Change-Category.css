@@ -10,6 +10,7 @@
 
 .change-form {
     display: flex;
+    width: 90%;
 }
 
 .change-input {
