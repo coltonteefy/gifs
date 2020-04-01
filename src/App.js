@@ -63,7 +63,6 @@ class App extends Component {
         this.fetchData(SEARCH_URL);
         this.eventListener();
         this.startTimer();
-        console.log("LOCAL APP", JSON.parse(localStorage.getItem("savedGifs")))
     }
 
     changeCategory = (input) => {

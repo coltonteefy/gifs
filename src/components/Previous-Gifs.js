@@ -20,6 +20,7 @@ class PreviousGifs extends Component {
     saveGif = (e) => {
         let saveData = {};
         let prev = [];
+
         this.state.prev.filter(data => {
             if(data.id === e.target.id) {
                 saveData = data;
@@ -28,27 +29,17 @@ class PreviousGifs extends Component {
             }
         });
 
-        let id = e.target.id;
-        document.getElementById(id).classList.add("saved");
-
         this.setState({
             prev: [...prev],
             savedGifs: [...this.state.savedGifs, saveData],
         }, () => {
             localStorage.setItem("savedGifs", JSON.stringify(this.state.savedGifs))
         })
-
-
     };
-
-
 
     toggleSavedArchive = (e) => {
         let archived = document.getElementById("archived-btn");
         let saved = document.getElementById("saved-btn");
-
-        let archSection = document.getElementById("archived-section");
-        let savedSection = document.getElementById("saved-section");
 
         if (e.target.innerHTML === "ARCHIVED") {
             archived.classList.add("previous-selected");
