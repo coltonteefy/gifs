@@ -41,13 +41,7 @@ class PreviousGifs extends Component {
 
     };
 
-    heartColor = (id) => {
-        if (this.state.savedGifs.includes(id)) {
-            return <i className="fas fa-heart heart-icon saved" id={id}/>
-        }
 
-        return <i className="fas fa-heart heart-icon" id={id}/>
-    };
 
     toggleSavedArchive = (e) => {
         let archived = document.getElementById("archived-btn");
@@ -82,10 +76,7 @@ class PreviousGifs extends Component {
                                     index < 15 &&
                                     <li key={index + objData.id} onClick={this.saveGif}>
                                         <img src={objData.preview} alt="loading"/>
-
-                                        {
-                                            this.heartColor(objData.id)
-                                        }
+                                        <i className="fas fa-heart heart-icon" id={objData.id}/>
                                     </li>
 
                                 )

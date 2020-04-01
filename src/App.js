@@ -51,7 +51,7 @@ class App extends Component {
     startTimer = () => {
         timer = setInterval(() => {
             this.fetchData(SEARCH_URL);
-        }, 3000);
+        }, 10000);
     };
 
     restartTimer = () => {
