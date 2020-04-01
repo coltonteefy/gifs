@@ -90,6 +90,7 @@ class PreviousGifs extends Component {
                 <section id="saved-section">
                     <ul className="saved-ul">
                         {
+                            this.state.savedGifs !== null &&
                             this.state.savedGifs.map((objData, index) => {
                                 return(
                                     <li key={index + objData.id}>
