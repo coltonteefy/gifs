@@ -5,7 +5,7 @@ class PreviousGifs extends Component {
 
     state = {
         prev: [],
-        savedGifs: JSON.parse(localStorage.getItem("savedGifs")),
+        savedGifs: JSON.parse(localStorage.getItem("savedGifs")) || [],
         currentSection: "archived"
     };
 
