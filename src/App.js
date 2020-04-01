@@ -76,7 +76,6 @@ class App extends Component {
 
     next = () => {
         this.fetchData(SEARCH_URL);
-        clearInterval(timer);
     };
 
     updateRating = (input) => {

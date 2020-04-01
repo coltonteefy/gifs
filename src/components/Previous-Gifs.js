@@ -25,9 +25,10 @@ class PreviousGifs extends Component {
             if(data.id === e.target.id) {
                 saveData = data;
             } else {
-                prev.push(data);
+                prev = [...prev, data];
             }
         });
+
 
         this.setState({
             prev: [...prev],
