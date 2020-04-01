@@ -31,7 +31,7 @@ class PreviousGifs extends Component {
 
 
         this.setState({
-            prev: [...prev],
+          
             savedGifs: [...this.state.savedGifs, saveData],
         }, () => {
             localStorage.setItem("savedGifs", JSON.stringify(this.state.savedGifs))
@@ -114,6 +114,10 @@ class PreviousGifs extends Component {
                     <div className="archived-body-section">
                         {
                             this.toggleSections()
+                        }
+                        {
+                            this.state.savedGifs.length === 0 &&
+                                <h1>NOTHING SAVED</h1>
                         }
                     </div>
                 </div>
