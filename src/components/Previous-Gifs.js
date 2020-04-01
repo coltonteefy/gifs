@@ -18,12 +18,12 @@ class PreviousGifs extends Component {
     }
 
     saveGif = (e) => {
-        let saveData = {};
+        let saveData = [...this.state.savedGifs];
         let prev = [];
 
         this.state.prev.filter(data => {
             if(data.id === e.target.id) {
-                saveData = data;
+                saveData = [...saveData, data];
             } else {
                 prev = [...prev, data];
             }
@@ -31,8 +31,8 @@ class PreviousGifs extends Component {
 
 
         this.setState({
-
-            savedGifs: [...this.state.savedGifs, saveData],
+            prev: prev,
+            savedGifs: saveData,
         }, () => {
             localStorage.setItem("savedGifs", JSON.stringify(this.state.savedGifs))
         })
