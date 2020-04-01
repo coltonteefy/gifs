@@ -29,12 +29,11 @@ class PreviousGifs extends Component {
             }
         });
 
-
         this.setState({
-            prev: prev,
-            savedGifs: saveData,
+            prev: [...prev],
+            savedGifs: [...saveData],
         }, () => {
-            localStorage.setItem("savedGifs", JSON.stringify(this.state.savedGifs))
+            localStorage.setItem("savedGifs", JSON.stringify(this.state.savedGifs));
         })
     };
 
