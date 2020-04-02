@@ -60,7 +60,7 @@ class App extends Component {
         console.log("TIMER")
         timer = setInterval(() => {
             this.next();
-        }, 3000);
+        }, 10000);
     };
 
 
