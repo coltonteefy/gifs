@@ -12,7 +12,7 @@ class PreviousGifs extends Component {
     componentWillReceiveProps(nextProps, nextContext) {
         if (this.props.previous !== undefined) {
             this.setState({
-                prev: [this.props.previous, ...this.state.prev]
+                prev: this.props.previous
             })
         }
     }
@@ -41,7 +41,7 @@ class PreviousGifs extends Component {
         let archived = document.getElementById("archived-btn");
         let saved = document.getElementById("saved-btn");
 
-        if (e.target.innerHTML === "ARCHIVED") {
+        if (e.target.innerHTML === "RECENT") {
             archived.classList.add("previous-selected");
             saved.classList.remove("previous-selected");
             this.setState({
@@ -101,13 +101,13 @@ class PreviousGifs extends Component {
         return (
             <div className="previous-container">
                 <button className="view-previous-btn">
-                    <i className="fas fa-archive"> </i> archived
+                    <i className="fas fa-archive"> </i> recent
                 </button>
                 <div className="previous-list-container">
                     <img src="https://media.giphy.com/media/W2PcRKgR80TlC6El8D/giphy.gif" alt="throw back"
                          id="throwback"/>
                     <div className="save-archive-toggle" onClick={this.toggleSavedArchive}>
-                        <h3 id="archived-btn" className="previous-selected">ARCHIVED</h3>
+                        <h3 id="archived-btn" className="previous-selected">RECENT</h3>
                         <h3 id="saved-btn">SAVED</h3>
                     </div>
                     <div className="archived-body-section">

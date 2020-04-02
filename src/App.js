@@ -6,14 +6,7 @@ import Rating from "./components/Rating";
 import ToggleAPILocal from "./components/Toggle-API-Local";
 
 const API_KEY = 'Zbt4XDP6iVfN4sF30tTLrLXS5tSkE5MN';
-let SEARCH_URL = `http://api.giphy.com/v1/gifs/random?api_key=${API_KEY}`;
-
 let timer = null;
-
-//images.preview_gif.url
-//image_original_url
-//id
-//title
 
 class App extends Component {
     state = {
@@ -21,25 +14,18 @@ class App extends Component {
         category: 'trippy',
         rating: 'PG-13',
         previousGifs: [],
-        source: "api"
+        nextGif: [],
+        source: "api",
+        SEARCH_URL: `http://api.giphy.com/v1/gifs/random?rating=PG-13&api_key=${API_KEY}`
     };
 
-    fetchData = (search) => {
-        fetch(search)
+    initialLoad = (search) => {
+        const gif = fetch(search)
             .then(res => {
                 return res.json()
             })
             .then(data => {
-                // console.log(data.data);
-                const obj = {
-                    id: data.data.id,
-                    title: data.data.title,
-                    url: data.data.image_original_url,
-                    preview: data.data.images.preview_gif.url
-                };
-
                 this.setState({
-                    previousGifs: [...this.state.previousGifs, obj],
                     currentGif: data.data.image_original_url
                 })
             })
@@ -48,41 +34,92 @@ class App extends Component {
             });
     };
 
-    startTimer = () => {
-        timer = setInterval(() => {
-            this.fetchData(SEARCH_URL);
-        }, 10000);
+    fillGifsUp = async (search) => {
+        const gif = await fetch(search)
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                const obj = {
+                    id: data.data.id,
+                    title: data.data.title,
+                    url: data.data.image_original_url,
+                    preview: data.data.images.preview_gif.url
+                };
+
+                this.setState({
+                    nextGif: [...this.state.nextGif, obj]
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            });
     };
 
-    restartTimer = () => {
-        clearInterval(timer);
-        this.startTimer();
+    startTimer = () => {
+        console.log("TIMER")
+        timer = setInterval(() => {
+            this.next();
+        }, 3000);
     };
+
 
     componentDidMount() {
-        this.fetchData(SEARCH_URL);
+        this.initialLoad(this.state.SEARCH_URL)
+        this.next();
         this.eventListener();
         this.startTimer();
+
+        const fillNextGif = setInterval(() => {
+            if(this.state.nextGif.length < 10) {
+                this.fillGifsUp(this.state.SEARCH_URL)
+            }
+        }, 300);
+    }
+
+    componentWillUnmount() {
+        clearInterval(timer);
     }
 
     changeCategory = (input) => {
+        clearInterval(timer);
         this.setState({
             category: input,
+            nextGif: [],
+            SEARCH_URL: `http://api.giphy.com/v1/gifs/random?tag=${input}&rating=${this.state.rating}&api_key=${API_KEY}`
         }, () => {
-            SEARCH_URL = `http://api.giphy.com/v1/gifs/random?tag=${this.state.category}&rating=${this.state.rating}&api_key=${API_KEY}`;
-            this.fetchData(SEARCH_URL);
+            this.startTimer();
+            this.next();
         });
     };
 
     next = () => {
-        this.fetchData(SEARCH_URL);
+        if(this.state.nextGif.length > 0) {
+            if(this.state.previousGifs.length > 15) {
+                let tmp = [...this.state.previousGifs];
+                tmp.pop();
+                this.setState({
+                    previousGifs: [...tmp],
+                })
+            }
+
+            let prev = this.state.nextGif[0];
+            let update = [...this.state.nextGif];
+            update.shift();
+
+            this.setState({
+                currentGif: this.state.nextGif[0].url,
+                previousGifs: [prev, ...this.state.previousGifs],
+                nextGif: [...update]
+            })
+        }
+
     };
 
     updateRating = (input) => {
         this.setState({
-            rating: input
-        }, () => {
-            SEARCH_URL = `http://api.giphy.com/v1/gifs/random?tag=${this.state.category}&rating=${this.state.rating}&api_key=${API_KEY}`;
+            rating: input,
+            SEARCH_URL: `http://api.giphy.com/v1/gifs/random?tag=${this.state.category}&rating=${input}&api_key=${API_KEY}`
         })
     };
 
@@ -102,13 +139,12 @@ class App extends Component {
         });
     };
 
-
     render() {
         return (
             <div className="App">
                 <div className="controls">
                     <div className="left-side-selections">
-                        <PreviousGifs previous={this.state.previousGifs[this.state.previousGifs.length - 1]}/>
+                        <PreviousGifs previous={this.state.previousGifs}/>
                         <Rating updateRating={this.updateRating} rating={this.state.rating}/>
                         <ToggleAPILocal source={this.state.source} toggleSource={this.toggleSource}/>
                     </div>
@@ -121,6 +157,18 @@ class App extends Component {
                     </div>
                 </div>
                 <img src={this.state.currentGif} alt="loading" id="image"/>
+                {
+                    this.state.nextGif.map((x, index) => {
+                        return(
+                            <img
+                                src={x.url}
+                                key={index + x.id}
+                                alt="abc"
+                                style={{ display: "none" }}
+                            />
+                        )
+                    })
+                }
             </div>
         );
     }
