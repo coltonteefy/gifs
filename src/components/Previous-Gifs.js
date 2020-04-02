@@ -4,33 +4,25 @@ import '../styles/Previous-Gif.css';
 class PreviousGifs extends Component {
 
     state = {
-        prev: [],
         savedGifs: JSON.parse(localStorage.getItem("savedGifs")) || [],
         currentSection: "archived"
     };
-
-    componentWillReceiveProps(nextProps, nextContext) {
-        if (this.props.previous !== undefined) {
-            this.setState({
-                prev: this.props.previous
-            })
-        }
-    }
 
     saveGif = (e) => {
         let saveData = [...this.state.savedGifs];
         let prev = [];
 
-        this.state.prev.filter(data => {
-            if(data.id === e.target.id) {
+        this.props.previous.filter(data => {
+            if (data.id === e.target.id) {
                 saveData = [...saveData, data];
             } else {
                 prev = [...prev, data];
             }
         });
 
+        this.props.saveGifUpdatePrev(prev);
+
         this.setState({
-            prev: [...prev],
             savedGifs: [...saveData],
         }, () => {
             localStorage.setItem("savedGifs", JSON.stringify(this.state.savedGifs));
@@ -62,11 +54,11 @@ class PreviousGifs extends Component {
                 <section id="archived-section">
                     <ul className="previous-ul">
                         {
-                            this.state.prev.map((objData, index) => {
+                            this.props.previous.map((objData, index) => {
                                 return (
                                     index < 15 &&
                                     <li key={index + objData.id} onClick={this.saveGif}>
-                                        <img src={objData.preview} alt="loading"/>
+                                        <img src={objData.url} alt="loading"/>
                                         <i className="fas fa-heart heart-icon" id={objData.id}/>
                                     </li>
 
@@ -83,15 +75,14 @@ class PreviousGifs extends Component {
                         {
                             this.state.savedGifs !== null &&
                             this.state.savedGifs.map((objData, index) => {
-                                return(
+                                return (
                                     <li key={index + objData.id}>
-                                        <img src={objData.preview} alt="loading"/>
+                                        <img src={objData.url} alt="loading"/>
                                     </li>
                                 )
                             })
                         }
                     </ul>
-
                 </section>
             )
         }
