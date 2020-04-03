@@ -184,7 +184,7 @@
 
 
 @keyFrames archivedShow {
-    from{
+    from {
         opacity: 0;
         transform: translateX(100px);
     }
@@ -195,7 +195,7 @@
 }
 
 @keyFrames savedShow {
-    from{
+    from {
         opacity: 0;
         transform: translateX(-100px);
     }

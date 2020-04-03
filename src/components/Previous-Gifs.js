@@ -110,7 +110,7 @@ class PreviousGifs extends Component {
 
                 {
                     this.state.savedGifs.map((gif, index) => {
-                        return(
+                        return (
                             <img
                                 src={gif.url}
                                 alt=""

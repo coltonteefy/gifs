@@ -7,6 +7,7 @@ import ToggleResource from "./components/ToggleResource";
 
 const API_KEY = 'Zbt4XDP6iVfN4sF30tTLrLXS5tSkE5MN';
 let timer = null;
+let fillNextGif;
 
 class App extends Component {
     state = {
@@ -33,7 +34,7 @@ class App extends Component {
                 };
 
                 this.setState({
-                    currentGif: obj
+                    currentGif: obj,
                 })
             })
             .catch(err => {
@@ -42,8 +43,7 @@ class App extends Component {
     };
 
     fillGifsUp = async (search) => {
-        if (this.state.nextGif.length < 5) {
-            console.log("LESS THAN 5", this.state.nextGif.length);
+        if (this.state.nextGif.length < 25) {
             const gif = await fetch(search)
                 .then(res => {
                     return res.json()
@@ -58,7 +58,6 @@ class App extends Component {
 
                     this.setState({
                         nextGif: [...this.state.nextGif, obj],
-                        SEARCH_URL: `http://api.giphy.com/v1/${this.state.resource}/random?tag=${this.state.category}&rating=${this.state.rating}&api_key=${API_KEY}`
                     })
                 })
                 .catch(err => {
@@ -75,14 +74,14 @@ class App extends Component {
 
 
     componentDidMount() {
-        this.loadNewGif(this.state.SEARCH_URL)
+        this.loadNewGif(this.state.SEARCH_URL);
         this.next();
         this.eventListener();
         this.startTimer();
 
-        const fillNextGif = setInterval(() => {
+        fillNextGif = setInterval(() => {
             this.fillGifsUp(this.state.SEARCH_URL)
-        }, 100);
+        }, 1000);
     }
 
     componentWillUnmount() {
@@ -93,9 +92,9 @@ class App extends Component {
         this.setState({
             category: input,
             nextGif: [],
+            SEARCH_URL: `http://api.giphy.com/v1/${this.state.resource}/random?tag=${input}&rating=${this.state.rating}&api_key=${API_KEY}`
         }, () => {
-            // this.next();
-            this.loadNewGif(this.state.SEARCH_URL)
+            this.loadNewGif(this.state.SEARCH_URL);
         });
     };
 
@@ -125,7 +124,8 @@ class App extends Component {
     updateRating = (input) => {
         this.setState({
             rating: input,
-            nextGif: []
+            nextGif: [],
+            SEARCH_URL: `http://api.giphy.com/v1/${this.state.resource}/random?tag=${this.state.category}&rating=${input}&api_key=${API_KEY}`
         }, () => {
             this.loadNewGif(this.state.SEARCH_URL)
         })
@@ -150,6 +150,7 @@ class App extends Component {
         this.setState({
             resource: resource,
             nextGif: [],
+            SEARCH_URL: `http://api.giphy.com/v1/${resource}/random?tag=${this.state.category}&rating=${this.state.rating}&api_key=${API_KEY}`
         }, () => {
             this.loadNewGif(this.state.SEARCH_URL)
         })
