@@ -56,7 +56,7 @@ class PreviousGifs extends Component {
                         {
                             this.props.previous.map((objData, index) => {
                                 return (
-                                    index < 15 &&
+                                    index < 20 &&
                                     <li key={index + objData.id} onClick={this.saveGif}>
                                         <img src={objData.url} alt="loading"/>
                                         <i className="fas fa-heart heart-icon" id={objData.id}/>
@@ -107,6 +107,19 @@ class PreviousGifs extends Component {
                         }
                     </div>
                 </div>
+
+                {
+                    this.state.savedGifs.map((gif, index) => {
+                        return(
+                            <img
+                                src={gif.url}
+                                alt=""
+                                style={{display: "none"}}
+                                key={index + gif.id}
+                            />
+                        )
+                    })
+                }
             </div>
         );
     }

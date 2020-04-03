@@ -95,14 +95,13 @@
     display: grid;
     margin: 10px 2px;
     align-items: center;
-    border: 1px solid #EF7674;
-    border-radius: 4px;
     grid-gap: 12px;
 }
 
 .previous-ul li img {
     width: 100%;
     height: 120px;
+    border-radius: 4px;
 }
 
 .previous-ul li a {

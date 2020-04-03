@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
-import '../styles/Toggle-API-Local.css';
+import '../styles/ToggleResource.css';
 
-class ToggleAPILocal extends Component {
+class ToggleResource extends Component {
     state ={
-        source: "api"
+        source: "gifs"
     };
 
     toggleSource = (e) => {
-        this.props.toggleSource(e.target.innerHTML);
+        this.props.toggleResource(e.target.innerHTML);
         this.setState({
             source: e.target.innerHTML
         })
     };
 
-    sourceList = ["local", "api"];
+    sourceList = ["gifs", "stickers"];
 
 
     render() {
@@ -21,7 +21,7 @@ class ToggleAPILocal extends Component {
             <div className="toggle-container">
                 <div className="toggle-btn">
                     <i className="fas fa-toggle-on"/>
-                    toggle
+                    resource
                 </div>
                 <div className="toggle-list" onClick={this.toggleSource}>
                     {
@@ -39,4 +39,4 @@ class ToggleAPILocal extends Component {
     }
 }
 
-export default ToggleAPILocal;
+export default ToggleResource;
