@@ -70,8 +70,6 @@
     font-weight: 900;
     height: 60px;
     width: 200px;
-    display: grid;
-    justify-self: end;
     z-index: 1;
 }
 

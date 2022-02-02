@@ -26,10 +26,11 @@ class App extends Component {
                 return res.json()
             })
             .then(data => {
+                console.log(data)
                 const obj = {
                     id: data.data.id,
                     title: data.data.title,
-                    url: data.data.image_original_url,
+                    url: data.data.images.original.url,
                     preview: data.data.images.preview_gif.url
                 };
 
@@ -52,7 +53,7 @@ class App extends Component {
                     const obj = {
                         id: data.data.id,
                         title: data.data.title,
-                        url: data.data.image_original_url,
+                        url: data.data.images.original.url,
                         preview: data.data.images.preview_gif.url
                     };
 
